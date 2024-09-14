@@ -53,13 +53,13 @@ class HealthIcon extends FlxSprite
 		scrollFactor.set();
 	}
 
-	public function setIcon(char:String, width:Int = 150, height:Int = 150) {
+	public function setIcon(char:String, width:Int, height:Int) {
 		if(curCharacter != char || this.width != width || this.height != height) {
 			curCharacter = char;
 			var path = Paths.image('icons/$char');
 			if (!Assets.exists(path)) path = Paths.image('icons/face');
 
-			loadGraphic(path, true, width, height);
+			loadGraphic(path, true, Math.floor(path.width / 2), Math.floor(path.height));
 
 			animation.add(char, [for(i in 0...frames.frames.length) i], 0, false, isPlayer);
 			antialiasing = true;
